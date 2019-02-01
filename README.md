@@ -37,3 +37,30 @@ INFO: Build completed successfully, 1 total action
 example a
 example a
 ```
+
+Пример Б
+--------
+
+Теперь сделаем некоторую тулзятину //:my_super_tool, которая первым аргументом принимает строку, а вторым - файл, куда нужно её записать
+
+Это реализуется при помощи rule `b_executable`
+
+Дальше сделаем rule, который настраивается строкой "content" и вызывает некоторую внешнюю тулзу два раза, и результат склекает в файл
+
+```
+➜ bazel build //:b
+INFO: Invocation ID: c357dc35-3d17-41d3-8a1a-3706bdee72c3
+INFO: Analysed target //:b (1 packages loaded, 2 targets configured).
+INFO: Found 1 target...
+INFO: From SkylarkAction b:
+some content
+some content
+Target //:b up-to-date:
+  bazel-bin/b
+INFO: Elapsed time: 0,190s, Critical Path: 0,07s
+INFO: 1 process: 1 darwin-sandbox.
+INFO: Build completed successfully, 2 total actions
+➜ cat bazel-bin/b
+some content
+some content
+```

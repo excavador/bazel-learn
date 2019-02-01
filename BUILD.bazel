@@ -18,3 +18,16 @@ cat $< >> $@
 cat $< >> $@
 """
 )
+
+
+load(":rules.bzl", "b_executable", "b")
+
+b_executable(
+    name = "my_super_tool",
+)
+
+b(
+    name = "b",
+    content = "some content",
+    some_my_tool = ":my_super_tool",
+)
