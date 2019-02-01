@@ -1,0 +1,20 @@
+
+genrule(
+    name = "a_1",
+    outs = ["1.txt"],
+    output_to_bindir = 1,
+    cmd = """#!/bin/bash
+echo "example a" >> $@
+"""
+)
+
+genrule(
+    name = "a_2",
+    srcs = [":a_1"],
+    outs = ["a_2.txt"],
+    output_to_bindir = 1,
+    cmd = """#!/bin/bash
+cat $< >> $@
+cat $< >> $@
+"""
+)
